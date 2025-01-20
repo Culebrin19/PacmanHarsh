@@ -1,6 +1,3 @@
-/**
- *
- */
 function setup() {
   createCanvas(600, 400).parent("#sketch-holder");
 }

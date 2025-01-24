@@ -6,7 +6,7 @@ const map = [
 
 const ROWS = 4;
 const COLUMNS = 4;
-const IMAGE_SIZE = 32;
+export const IMAGE_SIZE = 32;
 const WIDTH_CANVAS = IMAGE_SIZE * COLUMNS;
 const HEIGHT_CANVAS = IMAGE_SIZE * ROWS;
 
@@ -36,7 +36,7 @@ function setup() {
     for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
       if (map[filaActual][columnaActual] === 1) {
         console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
-        arrRocks.push(roca);
+        arrRocks.push(imgRock);
       }
     }
   }

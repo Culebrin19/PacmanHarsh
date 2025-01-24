@@ -1,25 +1,18 @@
+import { IMAGE_SIZE } from "../sketch.js";
+
 class GameObject {
-  constructor(x, y, units = "array") {
-    if (units === "array") {
-      this.rowObjecX = x;
-      this.columnsObjectY = y;
-      this.objectPixelsX = null;
-      this.objectPixelsY = null;
-    } else if (units === "nivell") {
-      this.objectPixelsX = x;
-      this.objectPixelsY = y;
-      this.rowObject = null;
-      this.columnsObject = null;
-    }
+  constructor(x, y) {
+    this.rowNumber = x;
+    this.columnObjectNumber = y;
+    this.coordXPixels = x * IMAGE_SIZE;
+    this.coordYPixels = y * IMAGE_SIZE;
+  }
 
-    showObject(img,x,y){
-      image(img, x,y);
+  showObject(img) {
+    if (this.coordXPixels == null || this.coordYPixels == null) {
+      this.coordXPixels = this.rowNumber * IMAGE_SIZE;
+      this.coordYPixels = this.rowNumber * IMAGE_SIZE;
     }
-
-    function draw(){
-      background(220);
-      let c = suma(3,2);
-      arrayRocks.forEach(rock=> rock.showImage imgRock,x,y);
-    }
+    image(img, this.coordXPixels, this.coordYPixels);
   }
 }

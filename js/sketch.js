@@ -29,8 +29,17 @@ function handleImage() {
   console.error("Images carregada correctament");
   // numberImagesLoaded++;
 }
+
 function setup() {
   createCanvas(WIDTH_CANVAS, HEIGHT_CANVAS).parent("sketch-pacman");
+  for (let filaActual = 0; filaActual < ROWS; filaActual++) {
+    for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
+      if (map[filaActual][columnaActual] === 1) {
+        console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
+        arrRocks.push(roca);
+      }
+    }
+  }
 }
 
 function draw() {

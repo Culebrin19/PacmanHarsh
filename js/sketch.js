@@ -2,9 +2,9 @@ import { GameObject } from "./classes/GameObject.js";
 
 const map = [
   [1, 1, 1, 1],
-  [0, 1, 1, 0],
-  [1, 1, 1, 1],
-  [0, 0, 1, 1]
+  [1, 0, 0, 1],
+  [1, 0, 0, 1],
+  [1, 1, 1, 1]
 ];
 
 const ROWS = 4;

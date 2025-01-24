@@ -1,7 +1,10 @@
+import { GameObject } from "./classes/GameObject.js";
+
 const map = [
   [1, 1, 1, 1],
   [0, 1, 1, 0],
-  [1, 1, 1, 1]
+  [1, 1, 1, 1],
+  [0, 0, 1, 1]
 ];
 
 const ROWS = 4;
@@ -35,15 +38,18 @@ function setup() {
   for (let filaActual = 0; filaActual < ROWS; filaActual++) {
     for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
       if (map[filaActual][columnaActual] === 1) {
+        const roca = new GameObject(filaActual, columnaActual);
         console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
-        arrRocks.push(imgRock);
+        arrRocks.push(roca);
       }
     }
+    console.log(arrRocks.length);
   }
 }
 
 function draw() {
   background(171, 248, 168);
+  arrRocks.forEach((roca) => roca.showObject(imgRock));
 }
 
 globalThis.setup = setup;

@@ -76,6 +76,12 @@ function setup() {
     console.log(arrRocks.length);
   }
 }
+// fer que no colisioni amb les roques
+for (let i = 0; i < arrRocks.length; i++) {
+  if (myPacman.coordXPixels === arrRocks[i].coordXPixels && myPacman.coordYPixels === arrRocks[i].coordYPixels) {
+    console.log("Error, colisiona amb una roca");
+  }
+}
 
 function draw() {
   background(171, 248, 168);

@@ -81,14 +81,12 @@ function draw() {
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgFood));
-  myPacman.coordXPixels = 100;
-  myPacman.coordYPixels = 100;
-  myPacman.showObject(imgPacMan);
+  myPacman.showObject(imgPacManRigth);
   switch (myPacman.direction) {
-  case 1: myPacman.showObject(imgPacMan); break;
-  case 2: myPacman.showObject(imgPacMan); break;
-  case 3: myPacman.showObject(imgPacMan); break;
-  case 4: myPacman.showObject(imgPacMan); break;
+  case 1: myPacman.showObject(imgPacManRigth); break;
+  case 2: myPacman.showObject(imgPacManLeft); break;
+  case 3: myPacman.showObject(imgPacManUp); break;
+  case 4: myPacman.showObject(imgPacManDown); break;
   }
 }
 

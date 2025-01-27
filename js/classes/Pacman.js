@@ -21,14 +21,32 @@ export class Pacman extends GameObject {
   }
 
   moveUp() {
-
+    const temp = this.coordYPixels - this.speedPacman;
+    if (temp < 0 || temp > (WIDTH_CANVAS - IMAGE_SIZE)) {
+      console.log("Error, no es pot moure a dalt");
+    } else {
+      this.direction = 2;
+      this.coordYPixels = temp;
+    }
   }
 
   moveLeft() {
-
+    const temp = this.coordXPixels - this.speedPacman;
+    if (temp < 0 || temp > (WIDTH_CANVAS - IMAGE_SIZE)) {
+      console.log("Error, no es pot moure a l'esquerra");
+    } else {
+      this.direction = 3;
+      this.coordXPixels = temp;
+    }
   }
 
   moveDown() {
-
+    const temp = this.coordYPixels + this.speedPacman;
+    if (temp < 0 || temp > (WIDTH_CANVAS - IMAGE_SIZE)) {
+      console.log("Error, no es pot moure a baix");
+    } else {
+      this.direction = 4;
+      this.coordYPixels = temp;
+    }
   }
 }

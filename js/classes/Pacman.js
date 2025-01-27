@@ -1,46 +1,34 @@
-class Pacman extends GameObject {
-  constructor() {
-    super(64, 64);
-    this.direction = 0;
-    this.points = 0;
-    this.lives = 3;
-    this.speed = 32;
-    this.diameter = 32;
-  }
+import { GameObject } from "./GameObject.js";
+import { IMAGE_SIZE, WIDTH_CANVAS } from "../sketch.js";
 
-  moveUp() {
-    if (this.coordYPixels > limit_top) {
-      this.coordYPixels -= this.speed;
-    }
-  }
-
-  moveDown() {
-    if (this.coordYPixels < limit_bot) {
-      this.coordYPixels += this.speed;
-    }
-  }
-
-  moveLeft() {
-    if (this.coordXPixels > limit_left) {
-      this.coordXPixels -= this.speed;
-    }
+export class Pacman extends GameObject {
+  constructor(y, x) {
+    super(y, x);
+    this.direction = 1;
+    this.speedPacman = 32;
+    this.widthCanvasPacman = 128;
+    this.pacmanDiametre = 32;
   }
 
   moveRight() {
-    if (this.coordXPixels < limit_right) {
-      this.coordXPixels += this.speed;
+    const temp = this.coordXPixels + this.speedPacman;
+    if (temp < 0 || temp > (WIDTH_CANVAS - IMAGE_SIZE)) {
+      console.log("Error, no es pot moure a la dreta");
+    } else {
+      this.direction = 1;
+      this.coordXPixels = temp;
     }
   }
 
-  eatFood() {
-    console.log("Pacman comió comida");
+  moveUp() {
+
   }
 
-  eatRock() {
-    console.log("Pacman chocó con una roca");
+  moveLeft() {
+
   }
 
-  showPacman(img) {
-    this.showGameObject(img);
+  moveDown() {
+
   }
 }

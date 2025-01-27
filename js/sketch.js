@@ -1,15 +1,16 @@
 import { GameObject } from "./classes/GameObject.js";
+import { Pacman } from "./classes/Pacman.js";
 
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1],
+  [1, 3, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 2, 0, 1],
   [1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 2, 0, 2, 0, 2, 0, 0, 2, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1],
@@ -20,11 +21,17 @@ const map = [
 const ROWS = 14;
 const COLUMNS = 14;
 export const IMAGE_SIZE = 32;
-const WIDTH_CANVAS = 448;
+export const WIDTH_CANVAS = 448;
 const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
 
 let imgRock;
 let imgFood;
+
+let imgPacManRigth;
+let imgPacManLeft;
+let imgPacManUp;
+let imgPacManDown;
+let myPacman;
 
 const arrRocks = [];
 const arrFood = [];
@@ -32,9 +39,12 @@ const numberImagesLoaded = 0;
 console.log("Boff");
 
 function preload() {
-  console.log("o");
   imgRock = loadImage("../img/roca.png", handleImage, handleError);
   imgFood = loadImage("../img/food.png", handleImage, handleError);
+  imgPacManRigth = loadImage("../img/packRight.png", handleImage, handleError);
+  imgPacManLeft = loadImage("../img/packLeft.png", handleImage, handleError);
+  imgPacManUp = loadImage("../img/packUp.png", handleImage, handleError);
+  imgPacManDown = loadImage("../img/packDown.png", handleImage, handleError);
 }
 
 function handleError() {
@@ -58,6 +68,9 @@ function setup() {
         const menjar = new GameObject(filaActual, columnaActual);
         console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
         arrFood.push(menjar);
+      } else if (map[filaActual][columnaActual] === 3) {
+        myPacman = new Pacman(filaActual, columnaActual);
+        console.log(`He creat pacman a posicio fila ${ROWS}i columna ${COLUMNS}`);
       }
     }
     console.log(arrRocks.length);
@@ -68,8 +81,32 @@ function draw() {
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgFood));
+  myPacman.coordXPixels = 100;
+  myPacman.coordYPixels = 100;
+  myPacman.showObject(imgPacMan);
+  switch (myPacman.direction) {
+  case 1: myPacman.showObject(imgPacMan); break;
+  case 2: myPacman.showObject(imgPacMan); break;
+  case 3: myPacman.showObject(imgPacMan); break;
+  case 4: myPacman.showObject(imgPacMan); break;
+  }
+}
+
+function keyPressed() {
+  if (keyCode == RIGHT_ARROW) {
+    myPacman.moveRight();
+  } else if (keyCode === LEFT_ARROW) {
+    myPacman.moveLeft();
+  } else if (keyCode === UP_ARROW) {
+    myPacman.moveUp();
+  } else if (keyCode === DOWN_ARROW) {
+    myPacman.moveDown();
+  } else {
+    console.log("Error de tecla");
+  }
 }
 
 globalThis.setup = setup;
 globalThis.draw = draw;
 globalThis.preload = preload;
+globalThis.keyPressed = keyPressed;

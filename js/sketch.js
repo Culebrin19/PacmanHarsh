@@ -62,7 +62,7 @@ function setup() {
     for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
       if (map[filaActual][columnaActual] === 1) {
         const roca = new GameObject(filaActual, columnaActual);
-        console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
+        console.log(`He creat roca a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrRocks.push(roca);
       } else if (map[filaActual][columnaActual] === 2) {
         const menjar = new GameObject(filaActual, columnaActual);
@@ -88,16 +88,16 @@ function draw() {
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgFood));
   myPacman.showObject(imgPacManRigth);
-  switch (myPacman.direction) {
-  case 1: myPacman.showObject(imgPacManRigth); break;
-  case 2: myPacman.showObject(imgPacManLeft); break;
-  case 3: myPacman.showObject(imgPacManUp); break;
-  case 4: myPacman.showObject(imgPacManDown); break;
-  }
+  // switch (myPacman.direction) {
+  // case 1: myPacman.showObject(imgPacManRigth); break;
+  // case 2: myPacman.showObject(imgPacManLeft); break;
+  // case 3: myPacman.showObject(imgPacManUp); break;
+  // case 4: myPacman.showObject(imgPacManDown); break;
+  // }
 }
 
 function keyPressed() {
-  if (keyCode == RIGHT_ARROW) {
+  if (keyCode === RIGHT_ARROW) {
     myPacman.moveRight();
   } else if (keyCode === LEFT_ARROW) {
     myPacman.moveLeft();

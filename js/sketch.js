@@ -24,7 +24,7 @@ const COLUMNS = 14;
 export const IMAGE_SIZE = 32;
 export const WIDTH_CANVAS = 448;
 export const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
-const extraSize = 60;
+const extraSize = 80;
 
 let imgRock;
 let imgFood;
@@ -34,6 +34,10 @@ let imgPacManLeft;
 let imgPacManUp;
 let imgPacManDown;
 let myPacman;
+const timerSecond = 0;
+let timer = 0;
+let startTimeGame = 0;
+const endTimeGame = 0;
 
 const arrRocks = [];
 const arrFood = [];
@@ -77,6 +81,7 @@ function setup() {
     }
     console.log(arrRocks.length);
   }
+  startTimeGame = second();
 }
 // fer que no colisioni amb les roques
 for (let i = 0; i < arrRocks.length; i++) {
@@ -99,7 +104,10 @@ function draw() {
   myPacman.showObject(imgPacManRigth);
   textSize(20);
   textAlign(LEFT, CENTER);
+  timer = second() - startTimeGame;
+  // timerSecond = timer / 1000;
   text(`Puntuació: ${myPacman.score}`, 10, HEIGHT_CANVAS + 30);
+  text(`Temps: ${timer}`, 10, HEIGHT_CANVAS + 60);
   // switch (myPacman.direction) {
   // case 1: myPacman.showObject(imgPacManRigth); break;
   // case 2: myPacman.showObject(imgPacManLeft); break;

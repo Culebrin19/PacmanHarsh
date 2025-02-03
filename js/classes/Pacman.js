@@ -79,8 +79,8 @@ export class Pacman extends GameObject {
     for (let i = 0; i < arrFood.length; i++) {
       if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
         console.log("Has menjat food");
-        this.score += arrFood[i].pointsFood;
         arrFood.splice(i, 1);
+        this.score = this.score + arrFood[i].pointsFood;
         console.log(this.score);
       }
     }

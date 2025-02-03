@@ -22,23 +22,23 @@ export class Pacman extends GameObject {
   }
 
   moveLeft(arrFood, arrRocks) {
-    const newX = this.coordXPixels - this.speedPacman;
-    if (newX < 0 || this.testCollideRock(arrRocks, newX, this.coordYPixels)) {
+    const temp = this.coordXPixels - this.speedPacman;
+    if (temp < 0 || this.testCollideRock(arrRocks, temp, this.coordYPixels)) {
       console.log("Error, no es pot moure a l'esquerra");
     } else {
       this.direction = 3;
-      this.coordXPixels = newX;
+      this.coordXPixels = temp;
       this.eatFood(arrFood);
     }
   }
 
   moveUp(arrFood, arrRocks) {
-    const newY = this.coordYPixels - this.speedPacman;
-    if (newY < 0 || this.testCollideRock(arrRocks, this.coordXPixels, newY)) {
+    const temp = this.coordYPixels - this.speedPacman;
+    if (temp < 0 || this.testCollideRock(arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a dalt");
     } else {
       this.direction = 2;
-      this.coordYPixels = newY;
+      this.coordYPixels = temp;
       this.eatFood(arrFood);
     }
   }

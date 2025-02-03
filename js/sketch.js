@@ -24,6 +24,7 @@ const COLUMNS = 14;
 export const IMAGE_SIZE = 32;
 export const WIDTH_CANVAS = 448;
 const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
+const punts = 0;
 
 let imgRock;
 let imgFood;
@@ -85,14 +86,11 @@ for (let i = 0; i < arrRocks.length; i++) {
 }
 
 // fer que no colisioni amb les food
-for (let i = 0; i < arrFood.length; i++) {
-  if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
-    myPacman.testCollideRock(arrFood[i]);
-  }
-  // if (result === true) {
-  // arrFood.splice(i, 1);
-  // }
-}
+// for (let i = 0; i < arrFood.length; i++) {
+//   if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
+//     myPacman.testCollideRock(arrFood[i]);
+//   }
+// }
 
 function draw() {
   background(171, 248, 168);

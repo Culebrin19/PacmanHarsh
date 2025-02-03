@@ -1,5 +1,6 @@
 import { GameObject } from "./classes/GameObject.js";
 import { Pacman } from "./classes/Pacman.js";
+import { Food } from "./classes/Food.js";
 
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -65,8 +66,8 @@ function setup() {
         console.log(`He creat roca a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrRocks.push(roca);
       } else if (map[filaActual][columnaActual] === 2) {
-        const menjar = new GameObject(filaActual, columnaActual);
-        console.log(`He creat roca a posicio fila ${ROWS}i columna ${COLUMNS}`);
+        const menjar = new Food(filaActual, columnaActual); // GameObject(filaActual, columnaActual);
+        console.log(`He creat food a posicio fila ${ROWS}i columna ${COLUMNS}`);
         arrFood.push(menjar);
       } else if (map[filaActual][columnaActual] === 3) {
         myPacman = new Pacman(filaActual, columnaActual);
@@ -81,6 +82,16 @@ for (let i = 0; i < arrRocks.length; i++) {
   if (myPacman.coordXPixels === arrRocks[i].coordXPixels && myPacman.coordYPixels === arrRocks[i].coordYPixels) {
     console.log("Error, colisiona amb una roca");
   }
+}
+
+// fer que no colisioni amb les food
+for (let i = 0; i < arrFood.length; i++) {
+  if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
+    myPacman.testCollideRock(arrFood[i]);
+  }
+  // if (result === true) {
+  // arrFood.splice(i, 1);
+  // }
 }
 
 function draw() {

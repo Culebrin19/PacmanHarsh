@@ -44,12 +44,12 @@ export class Pacman extends GameObject {
   }
 
   moveDown(arrFood, arrRocks) {
-    const newY = this.coordYPixels + this.speedPacman;
-    if (newY >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrRocks, this.coordXPixels, newY)) {
+    const temp = this.coordYPixels + this.speedPacman;
+    if (temp >= WIDTH_CANVAS - IMAGE_SIZE || this.testCollideRock(arrRocks, this.coordXPixels, temp)) {
       console.log("Error, no es pot moure a baix");
     } else {
       this.direction = 4;
-      this.coordYPixels = newY;
+      this.coordYPixels = temp;
       this.eatFood(arrFood);
     }
   }
@@ -64,11 +64,19 @@ export class Pacman extends GameObject {
     return false;
   }
 
+  // testCollideFood(arrFood) {
+  //   for (let i = 0; i < arrFood.length; i++) {
+  //     if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
+  //       console.log("Has menjat food");
+  //       /
+  //     }
+  //   }
+
   eatFood(arrFood) {
     for (let i = 0; i < arrFood.length; i++) {
       if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
         console.log("Has menjat food");
-        // veure com eliminar el menjar
+        arrFood.splice(i, 1);
       }
     }
   }

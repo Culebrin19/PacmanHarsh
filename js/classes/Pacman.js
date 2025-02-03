@@ -1,11 +1,13 @@
 import { GameObject } from "./GameObject.js";
-import { IMAGE_SIZE, WIDTH_CANVAS } from "../sketch.js";
+import { IMAGE_SIZE, WIDTH_CANVAS, HEIGHT_CANVAS } from "../sketch.js";
+import { Food } from "./Food.js";
 
 export class Pacman extends GameObject {
   constructor(y, x) {
     super(y, x);
     this.direction = 1;
     this.speedPacman = 32;
+    this.score = 0;
     this.widthCanvasPacman = 128;
     this.pacmanDiametre = 32;
   }
@@ -68,15 +70,18 @@ export class Pacman extends GameObject {
   //   for (let i = 0; i < arrFood.length; i++) {
   //     if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
   //       console.log("Has menjat food");
-  //       /
+  //       arrFood.splice(i, 1);
   //     }
   //   }
+  // }
 
   eatFood(arrFood) {
     for (let i = 0; i < arrFood.length; i++) {
       if (this.coordXPixels === arrFood[i].coordXPixels && this.coordYPixels === arrFood[i].coordYPixels) {
         console.log("Has menjat food");
+        this.score += arrFood[i].pointsFood;
         arrFood.splice(i, 1);
+        console.log(this.score);
       }
     }
   }

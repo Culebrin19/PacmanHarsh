@@ -23,8 +23,8 @@ const ROWS = 14;
 const COLUMNS = 14;
 export const IMAGE_SIZE = 32;
 export const WIDTH_CANVAS = 448;
-const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
-const punts = 0;
+export const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
+const extraSize = 60;
 
 let imgRock;
 let imgFood;
@@ -59,7 +59,7 @@ function handleImage() {
 }
 
 function setup() {
-  createCanvas(WIDTH_CANVAS, HEIGHT_CANVAS).parent("sketch-pacman");
+  createCanvas(WIDTH_CANVAS, HEIGHT_CANVAS + extraSize).parent("sketch-pacman");
   for (let filaActual = 0; filaActual < ROWS; filaActual++) {
     for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
       if (map[filaActual][columnaActual] === 1) {
@@ -86,17 +86,20 @@ for (let i = 0; i < arrRocks.length; i++) {
 }
 
 // fer que no colisioni amb les food
-// for (let i = 0; i < arrFood.length; i++) {
-//   if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
-//     myPacman.testCollideRock(arrFood[i]);
-//   }
-// }
+for (let i = 0; i < arrFood.length; i++) {
+  if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
+    myPacman.testCollideRock(arrFood[i]);
+  }
+}
 
 function draw() {
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgFood));
   myPacman.showObject(imgPacManRigth);
+  textSize(20);
+  textAlign(LEFT, CENTER);
+  text(`Puntuació: ${myPacman.score}`, 10, HEIGHT_CANVAS + 30);
   // switch (myPacman.direction) {
   // case 1: myPacman.showObject(imgPacManRigth); break;
   // case 2: myPacman.showObject(imgPacManLeft); break;

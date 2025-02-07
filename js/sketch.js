@@ -1,6 +1,7 @@
 import { GameObject } from "./classes/GameObject.js";
 import { Pacman } from "./classes/Pacman.js";
 import { Food } from "./classes/Food.js";
+import { ErrorPacman } from "./classes/ErrorPacman.js";
 
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -41,7 +42,7 @@ const endTimeGame = 0;
 
 const arrRocks = [];
 const arrFood = [];
-const numberImagesLoaded = 0;
+let numberImagesLoaded = 0;
 console.log("Boff");
 
 function preload() {
@@ -55,11 +56,17 @@ function preload() {
 
 function handleError() {
   console.error("Error carregar imatge");
+  try {
+    throw new ErrorPacman(2, "Error carregar imatge");
+  } catch (error) {
+    console.error(error.toString());
+  }
+  // showError();
 }
 
 function handleImage() {
   console.error("Images carregada correctament");
-  // numberImagesLoaded++;
+  numberImagesLoaded++;
 }
 
 function setup() {
@@ -127,7 +134,22 @@ function keyPressed() {
     myPacman.moveDown(arrFood, arrRocks);
   } else {
     console.log("Error de tecla");
+    const error = new ErrorPacman(1, "Error de tecla");
+    error.toString();
   }
+}
+
+function showError() {
+  // console.error("Error carregar imatge");
+  const errorImage = new ErrorPacman(3, "Error carregar imatge");
+  errorImage.toString();
+  const parent = document.getElementById("error-holder");
+  const node = document.createElement("img");
+  node.setAttributes("src", "../img/error.png");
+  node.setAttributes("alt", "Imatge error");
+  parent.appendChild(node);
+  noLoop();
+  remove();
 }
 
 globalThis.setup = setup;

@@ -121,6 +121,7 @@ function draw() {
   // case 3: myPacman.showObject(imgPacManUp); break;
   // case 4: myPacman.showObject(imgPacManDown); break;
   // }
+  testFinishGame();
 }
 
 function keyPressed() {
@@ -150,6 +151,16 @@ function showError() {
   parent.appendChild(node);
   noLoop();
   remove();
+}
+
+function testFinishGame() {
+  if (arrFood.length === 0) {
+    confirm("Fi del joc, has guanyat");
+  } else if (timer >= 120) {
+    // test lose game
+  } else {
+    // continuar jugant
+  }
 }
 
 globalThis.setup = setup;

@@ -156,12 +156,22 @@ function showError() {
 
 function testFinishGame() {
   if (arrFood.length === 0) {
-    confirm("Fi del joc, has guanyat");
+    // alert("Fi del joc, has guanyat");
+    // noLoop();
+    // window.location.reload();
+    const theConfirm = confirm("has guanyat, vols tornar a començar?");
+    if (theConfirm) {
+      window.location.reload();
+    } else {
+      noLoop(); // veure que fer al else
+    }
   } else if (timer >= 90) {
     // test lose game
     confirm("Fi del joc, has perdut");
     window.location.reload();
-  } else {
+  } else if (LIVES_PACMAN === 0) {
+    alert("Has perdut totes les vides, fi del joc");
+    window.location.reload();
     // continuar jugant
   }
 }

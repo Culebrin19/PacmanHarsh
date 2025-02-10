@@ -8,7 +8,7 @@ export class Pacman extends GameObject {
     this.direction = 1;
     this.speedPacman = 32;
     this.score = 0;
-    this.pacmanLive = LIVES_PACMAN;
+    this.pacmanLive = LIVES_PACMAN; // acabar de veure com fer que restin
     this.widthCanvasPacman = 128;
     this.pacmanDiametre = 32;
   }

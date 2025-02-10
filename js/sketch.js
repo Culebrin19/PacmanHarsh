@@ -26,6 +26,7 @@ export const IMAGE_SIZE = 32;
 export const WIDTH_CANVAS = 448;
 export const HEIGHT_CANVAS = 448; // IMAGE_SIZE * ROWS
 const extraSize = 80;
+export let LIVES_PACMAN;
 
 let imgRock;
 let imgFood;
@@ -69,7 +70,7 @@ function handleImage() {
   numberImagesLoaded++;
 }
 
-function setup() {
+function setup() { // s'executa una vegada
   createCanvas(WIDTH_CANVAS, HEIGHT_CANVAS + extraSize).parent("sketch-pacman");
   for (let filaActual = 0; filaActual < ROWS; filaActual++) {
     for (let columnaActual = 0; columnaActual < COLUMNS; columnaActual++) {
@@ -88,7 +89,7 @@ function setup() {
     }
     console.log(arrRocks.length);
   }
-  startTimeGame = second();
+  startTimeGame = millis();
 }
 // fer que no colisioni amb les roques
 for (let i = 0; i < arrRocks.length; i++) {
@@ -104,14 +105,14 @@ for (let i = 0; i < arrFood.length; i++) {
   }
 }
 
-function draw() {
+function draw() { // s'executa en bucle (no para)
   background(171, 248, 168);
   arrRocks.forEach((roca) => roca.showObject(imgRock));
   arrFood.forEach((menjar) => menjar.showObject(imgFood));
   myPacman.showObject(imgPacManRigth);
   textSize(20);
   textAlign(LEFT, CENTER);
-  timer = second() - startTimeGame;
+  timer = floor((millis() - startTimeGame) / 1000);
   // timerSecond = timer / 1000;
   text(`Puntuació: ${myPacman.score}`, 10, HEIGHT_CANVAS + 30);
   text(`Temps: ${timer}`, 10, HEIGHT_CANVAS + 60);
@@ -156,8 +157,10 @@ function showError() {
 function testFinishGame() {
   if (arrFood.length === 0) {
     confirm("Fi del joc, has guanyat");
-  } else if (timer >= 120) {
+  } else if (timer >= 90) {
     // test lose game
+    confirm("Fi del joc, has perdut");
+    window.location.reload();
   } else {
     // continuar jugant
   }

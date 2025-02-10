@@ -1,5 +1,5 @@
 import { GameObject } from "./GameObject.js";
-import { IMAGE_SIZE, WIDTH_CANVAS, HEIGHT_CANVAS } from "../sketch.js";
+import { IMAGE_SIZE, WIDTH_CANVAS, HEIGHT_CANVAS, LIVES_PACMAN } from "../sketch.js";
 import { Food } from "./Food.js";
 
 export class Pacman extends GameObject {
@@ -8,6 +8,7 @@ export class Pacman extends GameObject {
     this.direction = 1;
     this.speedPacman = 32;
     this.score = 0;
+    this.pacmanLive = LIVES_PACMAN;
     this.widthCanvasPacman = 128;
     this.pacmanDiametre = 32;
   }
@@ -60,6 +61,10 @@ export class Pacman extends GameObject {
     for (const roca of arrRocks) {
       if (newX === roca.coordXPixels && newY === roca.coordYPixels) {
         console.log("Has colisionat amb una roca");
+        alert("Has xocat amb una roca, has perdut una vida");
+        this.coordYPixels = 160;
+        this.coordXPixels = 256;
+        this.pacmanLive--;
         return true;
       }
     }

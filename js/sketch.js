@@ -30,6 +30,8 @@ export let LIVES_PACMAN;
 
 let imgRock;
 let imgFood;
+let soundFood;
+let soundPacman;
 
 let imgPacManRigth;
 let imgPacManLeft;
@@ -53,6 +55,8 @@ function preload() {
   imgPacManLeft = loadImage("../img/packLeft.png", handleImage, handleError);
   imgPacManUp = loadImage("../img/packUp.png", handleImage, handleError);
   imgPacManDown = loadImage("../img/packDown.png", handleImage, handleError);
+  soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
+  soundPacman = loadSound("../img/sounds/pacman.mp3");
 }
 
 function handleError() {
@@ -102,6 +106,7 @@ for (let i = 0; i < arrRocks.length; i++) {
 for (let i = 0; i < arrFood.length; i++) {
   if (myPacman.coordXPixels === arrFood[i].coordXPixels && myPacman.coordYPixels === arrFood[i].coordYPixels) {
     myPacman.testCollideRock(arrFood[i]);
+    soundFood.play();
   }
 }
 
@@ -128,12 +133,16 @@ function draw() { // s'executa en bucle (no para)
 function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
     myPacman.moveRight(arrFood, arrRocks);
+    soundPacman.play();
   } else if (keyCode === LEFT_ARROW) {
     myPacman.moveLeft(arrFood, arrRocks);
+    soundPacman.play();
   } else if (keyCode === UP_ARROW) {
     myPacman.moveUp(arrFood, arrRocks);
+    soundPacman.play();
   } else if (keyCode === DOWN_ARROW) {
     myPacman.moveDown(arrFood, arrRocks);
+    soundPacman.play();
   } else {
     console.log("Error de tecla");
     const error = new ErrorPacman(1, "Error de tecla");
@@ -163,7 +172,7 @@ function testFinishGame() {
     if (theConfirm) {
       window.location.reload();
     } else {
-      noLoop(); // veure que fer al else
+      noLoop(); // veure que fer al else (alert o loop)
     }
   } else if (timer >= 90) {
     // test lose game

@@ -84,11 +84,11 @@ function setup() { // s'executa una vegada
         arrRocks.push(roca);
       } else if (map[filaActual][columnaActual] === 2) {
         const menjar = new Food(filaActual, columnaActual); // GameObject(filaActual, columnaActual);
-        console.log(`He creat food a posicio fila ${ROWS}i columna ${COLUMNS}`);
+        console.log(`He creat food a posicio fila ${filaActual}i columna ${columnaActual}`);
         arrFood.push(menjar);
       } else if (map[filaActual][columnaActual] === 3) {
         myPacman = new Pacman(filaActual, columnaActual);
-        console.log(`He creat pacman a posicio fila ${ROWS}i columna ${COLUMNS}`);
+        console.log(`He creat pacman a posicio fila ${filaActual}i columna ${columnaActual}`);
       }
     }
     console.log(arrRocks.length);
@@ -96,9 +96,11 @@ function setup() { // s'executa una vegada
   startTimeGame = millis();
 }
 // fer que no colisioni amb les roques
-for (let i = 0; i < arrRocks.length; i++) {
-  if (myPacman.coordXPixels === arrRocks[i].coordXPixels && myPacman.coordYPixels === arrRocks[i].coordYPixels) {
-    console.log("Error, colisiona amb una roca");
+if (myPacman) {
+  for (let i = 0; i < arrRocks.length; i++) {
+    if (myPacman.coordXPixels === arrRocks[i].coordXPixels && myPacman.coordYPixels === arrRocks[i].coordYPixels) {
+      console.log("Error, colisiona amb una roca");
+    }
   }
 }
 
@@ -160,7 +162,7 @@ function showError() {
   node.setAttribute("alt", "Imatge error");
   parent.appendChild(node);
   noLoop();
-  remove();
+  // remove();
 }
 
 function testFinishGame() {
@@ -168,8 +170,7 @@ function testFinishGame() {
     // alert("Fi del joc, has guanyat");
     // noLoop();
     // window.location.reload();
-    const theConfirm = confirm("has guanyat, vols tornar a començar?");
-    if (theConfirm) {
+    if (confirm("has guanyat, vols tornar a començar?")) {
       window.location.reload();
     } else {
       noLoop(); // veure que fer al else (alert o loop)

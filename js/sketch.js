@@ -49,14 +49,14 @@ let numberImagesLoaded = 0;
 console.log("Boff");
 
 function preload() {
-  imgRock = loadImage("../img/roca.png", handleImage, handleError);
-  imgFood = loadImage("../img/food.png", handleImage, handleError);
-  imgPacManRigth = loadImage("../img/packRight.png", handleImage, handleError);
-  imgPacManLeft = loadImage("../img/packLeft.png", handleImage, handleError);
-  imgPacManUp = loadImage("../img/packUp.png", handleImage, handleError);
-  imgPacManDown = loadImage("../img/packDown.png", handleImage, handleError);
-  soundFood = loadSound("../img/sounds/pacman_eatfruit.wav");
-  soundPacman = loadSound("../img/sounds/pacman.mp3");
+  imgRock = loadImage("/img/roca.png", handleImage, handleError);
+  imgFood = loadImage("/img/food.png", handleImage, handleError);
+  imgPacManRigth = loadImage("/img/packRight.png", handleImage, handleError);
+  imgPacManLeft = loadImage("/img/packLeft.png", handleImage, handleError);
+  imgPacManUp = loadImage("/img/packUp.png", handleImage, handleError);
+  imgPacManDown = loadImage("/img/packDown.png", handleImage, handleError);
+  soundFood = loadSound("/img/sounds/pacman_eatfruit.wav");
+  soundPacman = loadSound("/img/sounds/pacman.mp3");
 }
 
 function handleError() {

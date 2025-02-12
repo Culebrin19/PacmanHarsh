@@ -170,7 +170,8 @@ function testFinishGame() {
     // alert("Fi del joc, has guanyat");
     // noLoop();
     // window.location.reload();
-    if (confirm("has guanyat, vols tornar a començar?")) {
+    const theConfirm = confirm("has guanyat, vols tornar a començar?");
+    if (theConfirm) {
       window.location.reload();
     } else {
       noLoop(); // veure que fer al else (alert o loop)

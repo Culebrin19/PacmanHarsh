@@ -156,8 +156,8 @@ function showError() {
   errorImage.toString();
   const parent = document.getElementById("error-holder");
   const node = document.createElement("img");
-  node.setAttributes("src", "../img/error.png");
-  node.setAttributes("alt", "Imatge error");
+  node.setAttribute("src", "../img/error.png");
+  node.setAttribute("alt", "Imatge error");
   parent.appendChild(node);
   noLoop();
   remove();
